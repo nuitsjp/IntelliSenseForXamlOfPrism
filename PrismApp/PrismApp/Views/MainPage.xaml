@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PrismApp.ViewModels;assembly=PrismApp"
+             x:Class="PrismApp.Views.MainPage"
+             BindingContext="{Binding Source={x:Static viewModels:DesignTimeViewModelLocator.MainPageViewModel}}"
+             Title="MainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Orientation="Horizontal">
+            <Label Text="{Binding SelectedEmployee.Value.FirstName}" TextColor="Red"/>
+            <Label Text="{Binding SelectedEmployee.Value.LastName}" TextColor="Red"/>
+        </StackLayout>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Employees}" 
+                  SelectedItem="{Binding SelectedEmployee.Value}"
+                  VerticalOptions="Start">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding FirstName}"/>
+                            <Label Text="{Binding LastName}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
